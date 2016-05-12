@@ -43,13 +43,19 @@ class action_plugin_badbehaviour extends DokuWiki_Action_Plugin {
      * Do the magic
      */
     function handle_start(&$event, $param){
-        require_once(BB2_CWD . "/bad-behavior/version.inc.php");
         require_once(BB2_CWD . "/bad-behavior/core.inc.php");
 
         bb2_start(array( 'log_table'     => 'badbehaviour',
                          'display_stats' => true,
                          'strict'        => false,
                          'verbose'       => false,
+			 'logging'       => true,
+			 'httpbl_key'    => '',
+			 'httpbl_threat' => '25',
+			 'httpbl_maxage' => '30',
+			 'offsite_forms' => false,
+			 'eu_cookie'     => false,
+			 'reverse_proxy' => false,
                          'skipblackhole' => $this->getConf('skipblackhole')
                  ));
     }
